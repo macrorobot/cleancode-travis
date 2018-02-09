@@ -2,8 +2,8 @@
 
 namespace Shopping;
 
-use InvalidArgumentException,
-    Exception;
+use InvalidArgumentException;
+use Exception;
 
 class Cart
 {

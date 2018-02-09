@@ -3,6 +3,7 @@
 namespace Shopping;
 
 use PDO;
+use Exception;
 
 class ProductRepository
 {
@@ -31,7 +32,7 @@ class ProductRepository
         $stmt = $this->pdo->prepare($sql);
 
         if ($stmt->execute([$id]) === false) {
-            throw new \Exception('unable to find product');
+            throw new Exception('unable to find product');
         }
 
         $row = $stmt->fetch(PDO::FETCH_OBJ);

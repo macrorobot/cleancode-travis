@@ -10,11 +10,16 @@ services:
   - docker
 
 before_install:
-  - docker pull selenium/standalone-chrome
-  - docker run -d -P -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome-debug
-  - docker ps -a
-  - php -S 8.35.192.0.8080 -t $PWD &
+#  - docker pull selenium/standalone-chrome
+#  - docker run -d -P -p 4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome
+#  - docker ps -a
+#  - php -S 8.35.192.0:8080 -t $PWD &
   - composer selfupdate
 
 install:
   - composer install --no-interaction --prefer-source
+
+script:
+  - ./vendor/bin/php-cs-fixer fix src/ --rules=@PSR2
+  - ./vendor/bin/phpunit -c phpunit.xml --coverage-text
+  - ./vendor/bin/phpcs --standard=PSR2
